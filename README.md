@@ -5,7 +5,7 @@ A plugin to create symbolic link to docker container log file after deploy.
 
 ## For what?
 
-I want to track the docker container log, but it is hard.
+I want to track the docker container log file, but it is hard.
 Because in dokku, the contaienr log path changes each time the app is deployed.
 This plugin creates symbolic link at fixed path (`/var/log/dokku/containers`) with fixed prefix (`your app name`) after each deploy.
 
