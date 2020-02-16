@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+
+APP="$1"
+CONTAINER_NAME_SUFFIX='\.web\.1' # FIX ME
+CONTAINER_NAME="${APP}${CONTAINER_NAME_SUFFIX}"
+CONTAINER_ID="$(docker ps -aqf "name=^${CONTAINER_NAME}$" --no-trunc)"
+LOG_FILE="/var/lib/docker/containers/${CONTAINER_ID}/${CONTAINER_ID}-json.log"
+LINK_PATH='/var/log/dokku/containers'
+LINK="${LINK_PATH}/${APP}-${CONTAINER_ID}.log"
+
+echo "-----> Creating symbolic link"
+echo "       src: ${LOG_FILE}"
+echo "       dst: ${LINK}"
+
+mkdir -p ${LINK_PATH}
+ln -s ${LOG_FILE} ${LINK}
+

@@ -1,0 +1,5 @@
+[plugin]
+description = "A plugin to create symbolic link to docker container log file after deploy"
+version = "0.1.0"
+[plugin.config]
+
